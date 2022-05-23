@@ -28,6 +28,7 @@ namespace gameDevTvGameJam
         void Update()
         {
             characterFloating();
+
         }
 
         protected override void initialization()

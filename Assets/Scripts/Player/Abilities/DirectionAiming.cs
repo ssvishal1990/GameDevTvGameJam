@@ -36,6 +36,7 @@ namespace gameDevTvGameJam
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.yellow;
+            Gizmos.color = new Color(122, 233, 112);
             Gizmos.DrawWireSphere(transform.position, overlapCircleRadius);
         }
     }

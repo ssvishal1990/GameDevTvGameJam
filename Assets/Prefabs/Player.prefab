@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5720057607335419031}
   - component: {fileID: 8741180540608211292}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,8 @@ GameObject:
   - component: {fileID: 961317577}
   - component: {fileID: 961317576}
   - component: {fileID: 961317575}
-  m_Layer: 0
+  - component: {fileID: 961317586}
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -116,7 +117,7 @@ Transform:
   m_GameObject: {fileID: 5356653275658014957}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.0076, y: -3.8751, z: 0}
-  m_LocalScale: {x: 1.1092688, y: 1.1089064, z: 1}
+  m_LocalScale: {x: 0.662899, y: 0.70437735, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5720057607335419031}
@@ -337,6 +338,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 10
   isIdle: 1
+--- !u!114 &961317586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5356653275658014957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb51bf82ba14e3d4cb5d99891acb6bab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overlapCircleRadius: 2.08
 --- !u!1 &5976769634041722301
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,7 +361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6011771703873847611}
   - component: {fileID: 867778761086483470}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
