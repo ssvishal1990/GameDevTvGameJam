@@ -50,7 +50,15 @@ namespace gameDevTvGameJam
 
         private void Move()
         {
-            movementInputAction.Player.Enable();
+            try
+            {
+                movementInputAction.Player.Enable();
+            }catch(NullReferenceException e)
+            {
+                Debug.Log("Printing stack trace + \n" + e.StackTrace);
+                return;
+            }
+            
             Vector2 playerDirection = movementInputAction.Player.Move.ReadValue<Vector2>();
 
             

@@ -35,5 +35,10 @@ namespace gameDevTvGameJam
                                                     transform.localScale.z);
         }
 
+        public bool  checkIfCharacterLookingLeft()
+        {
+            return isLookingLeft;
+        }
+
     }
 }

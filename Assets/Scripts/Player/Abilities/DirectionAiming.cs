@@ -5,7 +5,7 @@ namespace gameDevTvGameJam
 {
     public class DirectionAiming : Abilities
     {
-        [SerializeField] float overlapCircleRadius = 5.0f;
+        [SerializeField] protected float overlapCircleRadius = 5.0f;
 
 
 
