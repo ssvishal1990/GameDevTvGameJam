@@ -43,3 +43,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Hintmarks
+    uniqueID: 3030425687
+    locked: 0
+  - name: Player
+    uniqueID: 3188376991
+    locked: 0
