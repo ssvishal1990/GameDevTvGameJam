@@ -16,7 +16,7 @@ namespace gameDevTvGameJam
 
     public class Abilities : Character
     {
-        Character character;
+        protected Character character;
 
         protected override void initialization()
         {

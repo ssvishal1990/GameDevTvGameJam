@@ -12,7 +12,7 @@ public class EnemyVerticalMove : MonoBehaviour
 
     Rigidbody2D rb;
     private void Awake()
-    {y.prefab
+    {
     
         rb = GetComponent<Rigidbody2D>();
         Direction = new Vector2(0,1);
