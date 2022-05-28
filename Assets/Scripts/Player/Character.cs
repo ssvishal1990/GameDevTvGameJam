@@ -15,7 +15,7 @@ namespace gameDevTvGameJam
         protected bool isLookingLeft;
         
 
-        private void Start()
+        protected virtual void Start()
         {
             initialization();
         }

@@ -7,26 +7,31 @@ namespace gameDevTvGameJam
 {
     public class FloatyMovement : Abilities
     {
-        [SerializeField] float playerSpeed = 1f;
+        [SerializeField]  float playerSpeed = 1f;
 
         public bool isIdle;
-        bool sprintTriggerd;
+        public bool sprintTriggerd;
 
         [SerializeField] float sprintCoolDown = 3f;
-        [SerializeField] float forceMagnitude = 3f;
+        [SerializeField] int sprintSpeedIncreaseFactor = 2;
+        [SerializeField] float sprintDuration = 2;
         GameDevTvGameJam movementInputAction;
 
         protected Vector2 moveValue;
         protected Vector2 playerDirection;
-        public  float currentSprintCoolDown;
+        private float currentSprintCoolDown;
+
+        private float currentTimer = 0;
+        private float tempSpeed;
 
         private void Awake()
         {
             // initialization();
             movementInputAction = new GameDevTvGameJam();
             playerDirection = new Vector2(1,0);
-            currentSprintCoolDown = sprintCoolDown;
+            currentSprintCoolDown = 0f;
             sprintTriggerd  = false;
+            tempSpeed = playerSpeed;
         }
 
         protected override void initialization()
@@ -34,13 +39,7 @@ namespace gameDevTvGameJam
             base.initialization();
         }
 
-        // Use this for initialization
-        void Start()
-        {
-            
-        }
 
-        // Update is called once per frame
         void Update()
         {
             checkIfMoving();
@@ -78,6 +77,7 @@ namespace gameDevTvGameJam
 
             
             moveValue = playerDirection *Time.deltaTime * playerSpeed;
+            Debug.Log("Player speed while moving ---> " + playerSpeed);
 
 
             // transform.position = new Vector3(   transform.position.x  + moveValue.x,
@@ -101,15 +101,30 @@ namespace gameDevTvGameJam
         public void sprintPressed(InputAction.CallbackContext context)
         {
             
-            if(context.started || context.canceled || sprintTriggerd)
+            if(context.started || context.canceled || sprintTriggerd || currentSprintCoolDown > 0)
             {
                 Debug.Log("Inside if  ++ " + sprintTriggerd);
                 return;
             }
-            Debug.Log("triggering sprint");
-            GetComponent<Rigidbody2D>().AddForce(playerDirection * forceMagnitude, ForceMode2D.Impulse);
-            sprintTriggerd = true;
+            if(!sprintTriggerd){
+                sprintTriggerd = true;
+                 applySprint();
+            }
             currentSprintCoolDown = sprintCoolDown;
+        }
+
+        void applySprint(){
+            currentTimer += Time.deltaTime;
+            tempSpeed = playerSpeed;
+            if(currentTimer < sprintDuration)
+            {
+                playerSpeed = sprintSpeedIncreaseFactor * tempSpeed;
+            }
+            else
+            {
+                currentTimer = 0;
+                playerSpeed = tempSpeed;
+            }
         }
 
         protected virtual void checkSprintCoolDown(){
@@ -118,7 +133,11 @@ namespace gameDevTvGameJam
             }else
             {
                 currentSprintCoolDown -= Time.deltaTime;
-                if(currentSprintCoolDown <= 0) sprintTriggerd = false;
+                if(currentSprintCoolDown <= 0)
+                {
+                    sprintTriggerd = false;
+                    playerSpeed = tempSpeed;
+                } 
             }
 
         }
