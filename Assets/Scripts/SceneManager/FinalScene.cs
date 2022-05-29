@@ -22,6 +22,9 @@ public class FinalScene : MonoBehaviour
 
     public void restartGame()
     {
+        BackgroundAudio obj = FindObjectOfType<BackgroundAudio>();
+        Destroy(obj.gameObject);
         SceneManager.LoadScene(0);
+
     }
 }
