@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace gameDevTvGameJam
 {
+
+    enum LookDirection {
+        LEFT,
+        RIGHT
+    };
     // Purpose of this script is to have an initilization of all components
     // These components then can be referred by extending classes for
     // Easy access
@@ -11,8 +16,12 @@ namespace gameDevTvGameJam
     {
         protected CircleCollider2D bodyCollider;
         protected Rigidbody2D body;
-
+        protected UtilitiesManager utilitiesManager;
+        protected SpriteRenderer bodySpriteRenderer;
+        protected Scoremanager scoremanager;
         protected bool isLookingLeft;
+
+        protected Utilites utilites;
         
 
         protected virtual void Start()
@@ -24,6 +33,11 @@ namespace gameDevTvGameJam
         {
             bodyCollider = GetComponent<CircleCollider2D>();    
             body = GetComponent<Rigidbody2D>();
+            utilitiesManager = GetComponent<UtilitiesManager>();
+            bodySpriteRenderer = GetComponent<SpriteRenderer>();
+            utilites = GetComponent<Utilites>();
+            if(!utilites.enabled) utilites.enabled = true;
+            scoremanager = FindObjectOfType<Scoremanager>();
             isLookingLeft = false;
         }
 

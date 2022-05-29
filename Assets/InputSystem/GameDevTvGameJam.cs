@@ -62,6 +62,24 @@ public partial class @GameDevTvGameJam : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActivateDeactivateCoinPull"",
+                    ""type"": ""Button"",
+                    ""id"": ""5effb5b1-e2b0-4a20-a72b-fbc5ecf209b5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActivateEnemyEater"",
+                    ""type"": ""Button"",
+                    ""id"": ""08bf3765-0e1a-49c4-849b-34d7b5a6cf37"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -293,6 +311,28 @@ public partial class @GameDevTvGameJam : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""927d8105-7079-4f80-bf45-b3bb97b0ee86"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActivateDeactivateCoinPull"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5d4abdab-641c-45c3-9296-1382a4eb4689"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActivateEnemyEater"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -884,6 +924,8 @@ public partial class @GameDevTvGameJam : IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
+        m_Player_ActivateDeactivateCoinPull = m_Player.FindAction("ActivateDeactivateCoinPull", throwIfNotFound: true);
+        m_Player_ActivateEnemyEater = m_Player.FindAction("ActivateEnemyEater", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -959,6 +1001,8 @@ public partial class @GameDevTvGameJam : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Sprint;
+    private readonly InputAction m_Player_ActivateDeactivateCoinPull;
+    private readonly InputAction m_Player_ActivateEnemyEater;
     public struct PlayerActions
     {
         private @GameDevTvGameJam m_Wrapper;
@@ -967,6 +1011,8 @@ public partial class @GameDevTvGameJam : IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
+        public InputAction @ActivateDeactivateCoinPull => m_Wrapper.m_Player_ActivateDeactivateCoinPull;
+        public InputAction @ActivateEnemyEater => m_Wrapper.m_Player_ActivateEnemyEater;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -988,6 +1034,12 @@ public partial class @GameDevTvGameJam : IInputActionCollection2, IDisposable
                 @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @ActivateDeactivateCoinPull.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnActivateDeactivateCoinPull;
+                @ActivateDeactivateCoinPull.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnActivateDeactivateCoinPull;
+                @ActivateDeactivateCoinPull.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnActivateDeactivateCoinPull;
+                @ActivateEnemyEater.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnActivateEnemyEater;
+                @ActivateEnemyEater.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnActivateEnemyEater;
+                @ActivateEnemyEater.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnActivateEnemyEater;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1004,6 +1056,12 @@ public partial class @GameDevTvGameJam : IInputActionCollection2, IDisposable
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
+                @ActivateDeactivateCoinPull.started += instance.OnActivateDeactivateCoinPull;
+                @ActivateDeactivateCoinPull.performed += instance.OnActivateDeactivateCoinPull;
+                @ActivateDeactivateCoinPull.canceled += instance.OnActivateDeactivateCoinPull;
+                @ActivateEnemyEater.started += instance.OnActivateEnemyEater;
+                @ActivateEnemyEater.performed += instance.OnActivateEnemyEater;
+                @ActivateEnemyEater.canceled += instance.OnActivateEnemyEater;
             }
         }
     }
@@ -1164,6 +1222,8 @@ public partial class @GameDevTvGameJam : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnActivateDeactivateCoinPull(InputAction.CallbackContext context);
+        void OnActivateEnemyEater(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

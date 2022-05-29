@@ -26,11 +26,8 @@ namespace gameDevTvGameJam
                 if (itemCollider.gameObject.tag == "Enemy")
                 {
                     numberOfEnemiesDetected++;
-                    Debug.Log(itemCollider.gameObject.name);
                 }
             }
-
-            Debug.Log("numberOfEnemiesDetected = " +numberOfEnemiesDetected);
         }
 
         private void OnDrawGizmos()

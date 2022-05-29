@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1106590305
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 1}
@@ -100,7 +100,8 @@ GameObject:
   - component: {fileID: 961317577}
   - component: {fileID: 961317576}
   - component: {fileID: 961317575}
-  - component: {fileID: 961317586}
+  - component: {fileID: 718306554}
+  - component: {fileID: 718306555}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -164,7 +165,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1106590305
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -212,7 +213,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &961317582
 MonoBehaviour:
@@ -291,6 +292,54 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: efd0c9f2-6d3a-431b-a821-8c0e0a66bb12
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 961317575}
+        m_TargetAssemblyTypeName: gameDevTvGameJam.FloatyMovement, Assembly-CSharp
+        m_MethodName: sprintPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c876da38-d69f-4545-83cc-f50766adee63
+    m_ActionName: Player/Sprint[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 718306554}
+        m_TargetAssemblyTypeName: Utilites, Assembly-CSharp
+        m_MethodName: activateCoinPull
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5effb5b1-e2b0-4a20-a72b-fbc5ecf209b5
+    m_ActionName: Player/ActivateDeactivateCoinPull[/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 718306554}
+        m_TargetAssemblyTypeName: Utilites, Assembly-CSharp
+        m_MethodName: activateEnemyDestroyer
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 08bf3765-0e1a-49c4-849b-34d7b5a6cf37
+    m_ActionName: Player/ActivateEnemyEater[/Keyboard/t]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -336,9 +385,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b65f59ac37b0dfe40a583560890a1067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 10
+  playerSpeed: 15
   isIdle: 1
---- !u!114 &961317586
+  sprintTriggerd: 0
+  sprintCoolDown: 3
+  sprintSpeedIncreaseFactor: 2
+  sprintDuration: 2
+--- !u!114 &718306554
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -347,10 +400,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 5356653275658014957}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb51bf82ba14e3d4cb5d99891acb6bab, type: 3}
+  m_Script: {fileID: 11500000, guid: ffd2e03cf316cee4aaeccac7e2b978c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overlapCircleRadius: 2.08
+  coinPullTimeLimit: 2
+  enemyEaterTimeLimit: 2
+--- !u!114 &718306555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5356653275658014957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a3f0f34a986d684a89f9845d02a53d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinpull: 0
+  enemyEater: 0
 --- !u!1 &5976769634041722301
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +490,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1106590305
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.122641504, g: 0.104708076, b: 0.104708076, a: 1}

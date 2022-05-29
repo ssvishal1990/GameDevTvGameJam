@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1939850122531495378}
   - component: {fileID: 1939850122531495377}
   - component: {fileID: 1939850122531495376}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PlayerTrackingEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

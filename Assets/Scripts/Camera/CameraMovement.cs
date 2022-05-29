@@ -52,7 +52,6 @@ namespace gameDevTvGameJam
             //                     transform.position.y, transform.position.z);
             // }
             // float x = Mathf.Clamp(playerPosition.position.x, trackCamera.collidingPointLeft.x, trackCamera.collidingPointRight.x);
-            Debug.Log("inside Camera movement");
             transform.position = new Vector3(playerPosition.position.x,
                                                 playerPosition.position.y, transform.position.z);
         }

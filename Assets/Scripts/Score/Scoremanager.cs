@@ -12,6 +12,12 @@ public class Scoremanager : MonoBehaviour
 
     int scoreMultiplier;
 
+    private void Awake()
+    {
+        int noOfScoreManagers =  FindObjectsOfType<Scoremanager>().Length;
+        if(noOfScoreManagers > 1) Destroy(gameObject);
+        else DontDestroyOnLoad(gameObject);
+    }
     void Start()
     {
         scoreMultiplier = 1;
@@ -36,13 +42,21 @@ public class Scoremanager : MonoBehaviour
     {
         return powerUpEnabled;
     }
-
+    
+    /// <summary>
+    /// Updates the current score. 
+    /// </summary>
+    /// <param name="updateByValue">Value to be updated by.</param>
     public void updateScore(int updateByValue){
         currentScore += updateByValue * scoreMultiplier;
     }
     void Update()
     {
         scoreField.text = currentScore.ToString();
-        Debug.Log(currentScore);
+    }
+
+    public int getCurrentScore()
+    {
+        return currentScore;
     }
 }

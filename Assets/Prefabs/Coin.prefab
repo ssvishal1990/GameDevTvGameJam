@@ -114,3 +114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b88a648d702e949b3770687d93efba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotaionIncreement: 2
+  detectPlayerRadius: 15.22
+  coinMoveTowardsPlayerSpeed: 20
